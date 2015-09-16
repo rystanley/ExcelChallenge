@@ -9,8 +9,9 @@ BRDV=data.frame(x=runif(50,600,1200),y=runif(50,70,77))
 
 #### plotting ####
 #basic plot
-xlim=c(10,10000)
+xlim=c(10,10000)  # everything will scale to xlim and ylim automatically
 ylim=c(30,90)
+yintervals <- 5 # set the y interval for lines and labels here, everything will update
 plot.new()
 plot.window(log="x",xlim=xlim,ylim=ylim)
 
@@ -20,8 +21,8 @@ for(i in (log10(xlim[1])):(log10(xlim[2]))){
         abline(v=j*10^i,col='lightgrey')
     }
 }
-for(i in (ylim[1]/5):(ylim[2]/5)){
-        abline(h=i*5,col='lightgrey')
+for(i in (ylim[1]/yintervals):(ylim[2]/yintervals)){
+        abline(h=i*yintervals,col='lightgrey')
 }
 
 #### add thick lines with text ####
@@ -49,11 +50,11 @@ for(t in seq(types)){
     
 
 #### Add legend ####
-legend(2000,90,types,pch=pchs,pt.cex=cexs,pt.bg=bg_cols)
+legend("topright",inset=c(0.02,0.02),types,pch=pchs,pt.cex=cexs,pt.bg=bg_cols)
 
 #### Add axes ####
 axis(1,at=c(10^((log10(xlim[1])):(log10(xlim[2])))))
-axis(2,at=c(((ylim[1]/5):(ylim[2]/5))*5))
+axis(2,at=c(((ylim[1]/yintervals):(ylim[2]/yintervals))*yintervals))
 box()
 
 #### Add axes labels ####
