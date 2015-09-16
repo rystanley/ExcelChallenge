@@ -49,5 +49,3 @@ p1=p1+geom_point()+
   scale_fill_manual(values=c("yellow","yellow","orange","orange"));p1
 
 ggsave("Excel_CompA.tiff",dpi=300)
-
-### this is some useless text as a demo
