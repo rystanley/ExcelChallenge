@@ -30,7 +30,7 @@ for(i in (ylim[1]/yintervals):(ylim[2]/yintervals)){
 }
 
 #### add thick lines with text ####
-text(x=xlim[1]+2,y=88,label="A",col="black",cex=2,font=2)
+text(x=xlim[1],y=ylim[2],adj=c(0.5,1),label="A",col="black",cex=2,font=2)
 text(x=xlim[1],y=42,label="Ultramafic",col="black",cex=1,adj = c(0,0),font=2)
 text(x=xlim[1],y=53,label="Andesite",col="black",cex=1,adj = c(0,0),font=2)
 text(x=xlim[1],y=65,label="Rhyodacite",col="black",cex=1,adj = c(0,0),font=2)
@@ -112,11 +112,12 @@ for(t in seq(types)){
 
 
 #### Add legend ####
+text(x=xlim[1],y=ylim[2],adj=c(0.5,1),label="B",col="black",cex=2,font=2)
 legend("bottomright",inset=c(0.02,0.02),types,pch=pchs,pt.cex=cexs,pt.bg=bg_cols)
 
 #### Add axes ####
 axis(1,at=c(10^((log10(xlim[1])):(log10(xlim[2])))),padj=-1.3,tck=-0.01)
-axis(2,at=c(10^((log10(ylim[1])):(log10(ylim[2])))),padj=-1.3,tck=-0.01)
+axis(2,at=c(10^((log10(ylim[1])):(log10(ylim[2])))),las=1,hadj=0.5,tck=-0.01)
 box()
 box(which="figure",lwd=5)  # I hate this but if we're trying to replicate...
 
