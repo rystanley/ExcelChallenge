@@ -1,6 +1,9 @@
 #### Excel challenge using base plots ####
-tiff("baseplotmakesthebestplots.tiff",res=300,width=4.72,height=3.5,units="in")
-par(mar=c(2.5,3,0.5,0.5),cex=0.7,font.lab=2)
+tiff("baseplotmakesthebestplots.tiff",res=300,width=4.72,height=6.59,units="in")
+
+layout(matrix(c(1:3),nrow=3),heights=c(18,1,18))
+
+par(mar=c(2.5,3,0.5,0.5),cex=0.7)
 #### Dummy Data ####
 SORV_Hist=data.frame(x=runif(50,300,700),y=runif(50,65,80))
 SORV=data.frame(x=runif(50,350,750),y=runif(50,62,82))
@@ -62,6 +65,64 @@ box(which="figure",lwd=5)  # I hate this but if we're trying to replicate...
 #### Add axes labels ####
 title(xlab=expression(~bold(paste("Zr/Ti","O"[2]," (ppm/wt. %)",sep=""))),mgp=c(1.3,0,0),cex=1.5)
 title(ylab=expression(~bold(paste("Si","O"[2]," (wt. %)",sep=""))),mgp=c(1.7,0,0),cex=1.5)
+
+#### make weird blank spot ##
+par(mar=c(0,0,0,0),cex=0.7)
+
+plot.new()
+
+################# Second plot ################################################################################
+par(mar=c(2.5,3,0.5,0.5),cex=0.7)
+
+#### data ####
+#Dummy Data Plot B#
+SORV_Hist=data.frame(x=runif(50,500,1080),y=runif(50,45,100),Element="SORV_Hist")
+SORV=data.frame(x=runif(50,500,1090),y=runif(50,40,80),Element="SORV")
+BRDV_Hist=data.frame(x=runif(50,220,450),y=runif(50,28,50),Element="BRDV_Hist")
+BRDV=data.frame(x=runif(50,200,500),y=runif(50,18,35),Element="BRDV")
+
+#### plotting ####
+#basic plot
+xlim=c(100,10000)  # everything will scale to xlim and ylim automatically
+ylim=c(10,100)
+plot.new()
+plot.window(log="xy",xlim=xlim,ylim=ylim)
+
+#### add lines ####
+for(i in (log10(xlim[1])):(log10(xlim[2]))){
+    for(j in 1:9){
+        abline(v=j*10^i,col='lightgrey',lty=2)
+    }
+}
+for(i in (log10(ylim[1])):(log10(ylim[2]))){
+    for(j in 1:9){
+        abline(h=j*10^i,col='lightgrey',lty=2)
+    }
+}
+
+
+#### Add points ####
+types <- c("SORV_Hist","SORV","BRDV_Hist","BRDV")
+pchs <- c(24,24,24,24)
+bg_cols <- c("yellow","yellow","orange","orange")
+cexs <- c(1.5,1,1.5,1)
+for(t in seq(types)){
+    points(y~x,data=get(types[t]),pch=pchs[t],col="black",bg=bg_cols[t],cex=cexs[t])
+}
+
+
+#### Add legend ####
+legend("bottomright",inset=c(0.02,0.02),types,pch=pchs,pt.cex=cexs,pt.bg=bg_cols)
+
+#### Add axes ####
+axis(1,at=c(10^((log10(xlim[1])):(log10(xlim[2])))),padj=-1.3,tck=-0.01)
+axis(2,at=c(10^((log10(ylim[1])):(log10(ylim[2])))),padj=-1.3,tck=-0.01)
+box()
+box(which="figure",lwd=5)  # I hate this but if we're trying to replicate...
+
+#### Add axes labels ####
+title(xlab=expression(~bold(paste("Zr/Ti","O"[2]," (ppm/wt. %)",sep=""))),mgp=c(1.3,0,0),cex=1.5)
+title(ylab=expression(~bold(paste("Nb/Ti","O"[2]," (ppm/wt. %)",sep=""))),mgp=c(1.7,0,0),cex=1.5)
 
 dev.off()
 
