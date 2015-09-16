@@ -1,5 +1,6 @@
 #### Excel challenge using base plots ####
-
+tiff("baseplotmakesthebestplots.tiff",res=300,width=4.72,height=3.5,units="in")
+par(mar=c(2.5,3,0.5,0.5),cex=0.7,font.lab=2)
 #### Dummy Data ####
 SORV_Hist=data.frame(x=runif(50,300,700),y=runif(50,65,80))
 SORV=data.frame(x=runif(50,350,750),y=runif(50,62,82))
@@ -18,11 +19,11 @@ plot.window(log="x",xlim=xlim,ylim=ylim)
 #### add lines ####
 for(i in (log10(xlim[1])):(log10(xlim[2]))){
     for(j in 1:9){
-        abline(v=j*10^i,col='lightgrey')
+        abline(v=j*10^i,col='lightgrey',lty=2)
     }
 }
 for(i in (ylim[1]/yintervals):(ylim[2]/yintervals)){
-        abline(h=i*yintervals,col='lightgrey')
+        abline(h=i*yintervals,col='lightgrey',lty=2)
 }
 
 #### add thick lines with text ####
@@ -53,10 +54,15 @@ for(t in seq(types)){
 legend("topright",inset=c(0.02,0.02),types,pch=pchs,pt.cex=cexs,pt.bg=bg_cols)
 
 #### Add axes ####
-axis(1,at=c(10^((log10(xlim[1])):(log10(xlim[2])))))
-axis(2,at=c(((ylim[1]/yintervals):(ylim[2]/yintervals))*yintervals))
+axis(1,at=c(10^((log10(xlim[1])):(log10(xlim[2])))),padj=-1.3,tck=-0.01)
+axis(2,at=c(((ylim[1]/yintervals):(ylim[2]/yintervals))*yintervals),hadj=0.3,las=1,tck=-0.01)
 box()
+box(which="figure",lwd=5)  # I hate this but if we're trying to replicate...
 
 #### Add axes labels ####
-title(xlab=expression(paste("Zr/Ti","O"[2]," (ppm/wt. %)",sep="")))
-title(ylab=expression(paste("Si","O"[2]," (wt. %)",sep="")))
+title(xlab=expression(~bold(paste("Zr/Ti","O"[2]," (ppm/wt. %)",sep=""))),mgp=c(1.3,0,0),cex=1.5)
+title(ylab=expression(~bold(paste("Si","O"[2]," (wt. %)",sep=""))),mgp=c(1.7,0,0),cex=1.5)
+
+dev.off()
+
+# windowsFont()
