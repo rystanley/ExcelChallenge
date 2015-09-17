@@ -132,7 +132,7 @@ p3=p3+geom_point()+
   labs(x=expression(paste("Zr/Ti","O"[2]," (ppm/wt. %)",sep="")),
        y=expression(paste("Si","O"[2]," (wt. %)",sep="")),
        colour="",shape="",size="",fill="")+
-   geom_hline(aes(yintercept=hlines))+ #TA
+   geom_hline(aes(yintercept=hlines))+ #TA aes or no aes? seems to work here and the next two in two diff ways!
    geom_hline(yintercept=Gridlines2,col="grey75",alpha=0.5,lty=2)+ #TA
    geom_vline(xintercept=Gridlines,col="grey75",alpha=0.5,lty=2)+ #TA
 #  geom_hline(aes(yintercept=c(45,52)))+
