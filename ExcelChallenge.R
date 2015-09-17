@@ -138,9 +138,9 @@ p3=p3+geom_point()+
   geom_text(aes(x=5000,y=46,label="Basalt"),col="black",cex=7,hjust=0,vjust=0)+
   geom_text(aes(x=5000,y=58,label="Dacite"),col="black",cex=7,hjust=0,vjust=0)+
   geom_text(aes(x=5000,y=70,label="Rhyolite"),col="black",cex=7,hjust=0,vjust=0)+
-  theme(legend.position = "none",
-        legend.background=element_rect(c(fill="white",color="black",linetype=1,colour="black")),
-        panel.grid.major=element_blank(),panel.grid.minor=element_blank())+ # can't seem to get it to put a border
+  theme(legend.position=c(.85,.85),
+        legend.background=element_rect(fill="white",linetype=1,colour="black"),
+        panel.grid.major=element_blank(),panel.grid.minor=element_blank())+ # TA Drops. The. Mic.
   scale_shape_manual(values=c(24,24,25,25))+
   scale_size_manual(values=c(2,4,2,4))+
   scale_colour_manual(values=c("black","black","black","black"))+
