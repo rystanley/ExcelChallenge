@@ -105,6 +105,7 @@ dev.off()
 
 
 ### Better option ---------
+#TA only worked on p3
 
 #Frame the plot
 p3=ggplot(plotdata,aes(x=x,y=y,col=Element,shape=Element,size=Element,fill=Element))+
