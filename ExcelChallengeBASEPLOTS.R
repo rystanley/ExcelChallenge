@@ -128,5 +128,3 @@ title(ylab=expression(~bold(paste("Nb/Ti","O"[2]," (ppm/wt. %)",sep=""))),mgp=c(
 dev.off()
 
 # windowsFont()
-
-#im gonna make some stupid change
