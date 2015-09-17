@@ -111,13 +111,16 @@ p3=ggplot(plotdata,aes(x=x,y=y,col=Element,shape=Element,size=Element,fill=Eleme
   geom_point()
 
 #Manually add the gridlines (I can't seem to figure out why geom_vline(aes(xintercept=Gridlines)) doesn't work)
-for (i in Gridlines){
-  p3=p3+geom_vline(xintercept=i,col="grey75",alpha=0.5,lty=2)
-}
+#See my changes below.
+#for (i in Gridlines){
+#  p3=p3+geom_vline(xintercept=i,col="grey75",alpha=0.5,lty=2)
+#}
 
-for (i in Gridlines2){
-  p3=p3+geom_hline(yintercept=i,col="grey75",alpha=0.5,lty=2)
-}
+#for (i in Gridlines2){
+#  p3=p3+geom_hline(yintercept=i,col="grey75",alpha=0.5,lty=2)
+#}
+
+hlines<-c(45,52,64,69,57) #TA
 
 #Add the layers back on top of the grid lines
 p3=p3+geom_point()+
@@ -128,9 +131,12 @@ p3=p3+geom_point()+
   labs(x=expression(paste("Zr/Ti","O"[2]," (ppm/wt. %)",sep="")),
        y=expression(paste("Si","O"[2]," (wt. %)",sep="")),
        colour="",shape="",size="",fill="")+
-  geom_hline(aes(yintercept=c(45,52)))+
-  geom_hline(aes(yintercept=c(64,69)))+
-  geom_hline(aes(yintercept=57))+ # not sure why it won't let me plot 3 lines in one line of code
+   geom_hline(aes(yintercept=hlines))+ #TA
+   geom_hline(yintercept=Gridlines2,col="grey75",alpha=0.5,lty=2)+ #TA
+   geom_vline(xintercept=Gridlines,col="grey75",alpha=0.5,lty=2)+ #TA
+#  geom_hline(aes(yintercept=c(45,52)))+
+#  geom_hline(aes(yintercept=c(64,69)))+
+#  geom_hline(aes(yintercept=57))+ # not sure why it won't let me plot 3 lines in one line of code
   geom_text(aes(x=10,y=88,label="A"),col="black",cex=14)+
   geom_text(aes(x=10,y=42,label="Ultramafic"),col="black",cex=7,hjust=0,vjust=0)+
   geom_text(aes(x=10,y=53,label="Andesite"),col="black",cex=7,hjust=0,vjust=0)+
